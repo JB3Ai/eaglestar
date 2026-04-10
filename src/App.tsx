@@ -9,10 +9,12 @@ import { Shield, ArrowRight, Download, MapPin, Phone, Mail, Globe, CheckCircle2,
 import { SERVICES, COMPLIANCE, INDUSTRIES, TESTIMONIALS, FAQS } from './constants';
 import { Logo } from './components/Logo';
 import { ContactForm } from './components/ContactForm';
+import { SignupModal } from './components/SignupModal';
 
 export default function App() {
   const [isMapLoading, setIsMapLoading] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isSignupOpen, setIsSignupOpen] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   const scrollToContact = () => {
@@ -25,7 +27,7 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col selection:bg-brand-teal/30">
       {/* Navigation */}
-      <nav className="bg-brand-navy border-b border-white/10 sticky top-0 z-50">
+      <nav className="bg-brand-navy/95 backdrop-blur-md border-b border-white/5 sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <Logo variant="light" />
           
@@ -35,7 +37,7 @@ export default function App() {
               <a 
                 key={item} 
                 href={item === 'Contact' ? '#contact-form' : `#${item.toLowerCase()}`} 
-                className="text-white/70 hover:text-brand-teal text-xs font-semibold uppercase tracking-widest transition-colors"
+                className="text-white/50 hover:text-brand-gold text-[10px] font-bold uppercase tracking-[0.2em] transition-all"
                 onClick={(e) => {
                   if (item === 'Contact') {
                     e.preventDefault();
@@ -47,8 +49,14 @@ export default function App() {
               </a>
             ))}
             <button
+              onClick={() => setIsSignupOpen(true)}
+              className="text-brand-teal text-[10px] font-bold uppercase tracking-[0.2em] hover:text-white transition-colors"
+            >
+              Sign Up
+            </button>
+            <button
               aria-label="Access Client Portal"
-              className="bg-brand-teal text-white px-5 py-2.5 text-xs font-bold uppercase tracking-widest hover:bg-brand-teal/90 transition-all"
+              className="bg-brand-blue/20 hover:bg-brand-blue text-white border border-brand-blue/30 px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all"
             >
               Client Portal
             </button>
@@ -91,8 +99,14 @@ export default function App() {
                   </a>
                 ))}
                 <button
+                  onClick={() => { setIsMenuOpen(false); setIsSignupOpen(true); }}
+                  className="border border-brand-teal/30 text-brand-teal px-5 py-3 text-xs font-bold uppercase tracking-widest hover:bg-brand-teal hover:text-white transition-all w-full text-center"
+                >
+                  Quick Sign Up
+                </button>
+                <button
                   aria-label="Access Client Portal"
-                  className="bg-brand-teal text-white px-5 py-3 text-xs font-bold uppercase tracking-widest hover:bg-brand-teal/90 transition-all w-full text-center"
+                  className="bg-brand-blue text-white px-5 py-3 text-xs font-bold uppercase tracking-widest hover:bg-brand-blue/90 transition-all w-full text-center"
                 >
                   Client Portal
                 </button>
@@ -104,48 +118,49 @@ export default function App() {
 
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative bg-brand-navy overflow-hidden py-24 lg:py-40">
-          <div className="absolute inset-0 bg-gradient-to-br from-brand-navy via-brand-navy to-[#0a1e33]" />
+        <section className="relative bg-brand-navy overflow-hidden py-32 lg:py-56">
+          <div className="absolute inset-0">
+             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-navy/50" />
+             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(20,184,166,0.08),transparent_70%)]" />
+          </div>
           
           {/* Subtle shield watermark */}
-          <div className="absolute right-[-10%] top-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none">
-            <Shield size={800} strokeWidth={0.5} className="text-white" />
+          <div className="absolute right-[-5%] top-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none">
+            <Shield size={900} strokeWidth={0.3} className="text-white" />
           </div>
 
-          <div className="max-w-7xl mx-auto px-6 relative z-10">
+          <div className="max-w-7xl mx-auto px-6 relative z-10 text-center lg:text-left">
             <motion.div 
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-3xl"
+              transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-4xl mx-auto lg:mx-0"
             >
-              <div className="w-12 h-1 bg-brand-teal mb-8" />
-              <h1 className="text-5xl lg:text-7xl text-white font-display font-extrabold leading-[1.1] mb-6 tracking-tight">
+              <div className="flex justify-center lg:justify-start">
+                 <div className="w-16 h-1 bg-brand-gold mb-12" />
+              </div>
+              <h1 className="text-6xl lg:text-9xl text-white font-display font-black leading-[0.9] mb-8 tracking-tighter">
                 Risk Controlled.<br />
-                Operations Secured.
+                <span className="text-white/30">Operations Secured.</span>
               </h1>
-              <p className="text-xl text-brand-teal font-semibold leading-relaxed mb-4">
-                Professional guarding, undercover intelligence, and structured security operations across Gauteng.
-              </p>
-              <p className="text-lg text-white/60 font-light leading-relaxed mb-10 max-w-2xl">
-                Eagle Star Security delivers disciplined, compliant, and intelligence-driven protection solutions for commercial, industrial, residential, and event environments. From visible guarding to covert investigations, we protect your assets, people, and operations with structured oversight and measurable accountability.
+              <p className="text-xl lg:text-2xl text-brand-teal font-medium leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
+                Gauteng’s premier intelligence-driven security partner. Delivering disciplined, compliant, and accountable protection.
               </p>
               
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
                 <button 
-                  onClick={scrollToContact}
-                  aria-label="Book a Security Risk Assessment"
-                  className="bg-brand-teal text-white px-8 py-4 font-bold uppercase tracking-widest text-sm hover:translate-y-[-2px] transition-all shadow-lg shadow-brand-teal/20 flex items-center justify-center gap-2"
+                  onClick={() => setIsSignupOpen(true)}
+                  className="bg-brand-gold text-brand-navy px-10 py-5 font-bold uppercase tracking-[0.2em] text-xs hover:brightness-110 transition-all shadow-2xl flex items-center justify-center gap-2"
                 >
-                  Get Your Risk Assessment
-                  <ArrowRight size={18} />
+                  Quick Sign Up
+                  <ArrowRight size={16} />
                 </button>
                 <button
-                  aria-label="Download Company Compliance Profile"
-                  className="border border-white/20 text-white px-8 py-4 font-bold uppercase tracking-widest text-sm hover:bg-white/5 transition-all flex items-center justify-center gap-2"
+                  onClick={scrollToContact}
+                  aria-label="Book a Security Risk Assessment"
+                  className="bg-white/5 backdrop-blur-sm text-white border border-white/10 px-10 py-5 font-bold uppercase tracking-[0.2em] text-xs hover:bg-white/10 transition-all flex items-center justify-center gap-2"
                 >
-                  <Download size={18} />
-                  Company Profile
+                  Risk Assessment
                 </button>
               </div>
             </motion.div>
@@ -254,30 +269,29 @@ export default function App() {
         </section>
 
         {/* Services Section */}
-        <section id="services" className="py-24 bg-brand-light-grey">
+        <section id="services" className="py-32 bg-brand-light-grey">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-16 max-w-3xl">
-              <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.3em] block mb-4">Our Services</span>
-              <h2 className="text-4xl font-display font-bold text-brand-navy tracking-tight mb-6">Structured Protection Pillars</h2>
-              <p className="text-brand-charcoal/70">
-                Eagle Star Security provides structured protection across three core operational pillars.
+            <div className="mb-20 text-center lg:text-left">
+              <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.4em] block mb-4">Excellence in Security</span>
+              <h2 className="text-5xl font-display font-extrabold text-brand-navy tracking-tight mb-8">Operational Pillars</h2>
+              <p className="text-brand-charcoal/60 max-w-2xl mx-auto lg:mx-0 text-lg">
+                Elite protection strategies delivered with uncompromising precision and professional integrity.
               </p>
             </div>
 
-            <div className="grid lg:grid-cols-3 gap-8">
+            <div className="grid lg:grid-cols-3 gap-10">
               {SERVICES.map((service, idx) => (
                 <motion.div 
                   key={service.title}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   whileHover={{ 
-                    y: -12, 
-                    scale: 1.02, 
-                    transition: { type: 'spring', stiffness: 400, damping: 25 } 
+                    y: -16,
+                    transition: { duration: 0.4, ease: [0.22, 1, 0.36, 1] }
                   }}
                   viewport={{ once: true }}
-                  transition={{ delay: idx * 0.1 }}
-                  className="bg-white p-10 border border-black/5 flex flex-col h-full shadow-sm hover:shadow-2xl hover:border-brand-teal hover:shadow-brand-teal/10 transition-all duration-300 group"
+                  transition={{ delay: idx * 0.15 }}
+                  className="bg-white p-12 border border-black/[0.03] flex flex-col h-full shadow-[0_4px_20px_rgba(0,0,0,0.02)] hover:shadow-[0_20px_40px_rgba(0,0,0,0.05)] transition-all duration-500 group"
                 >
                   <div className="w-12 h-12 bg-brand-light-grey flex items-center justify-center mb-8 group-hover:bg-brand-teal/10 transition-colors">
                     <service.icon className="text-brand-blue w-6 h-6 group-hover:text-brand-teal transition-colors" />
@@ -524,7 +538,7 @@ export default function App() {
       </main>
 
       {/* Footer */}
-      <footer id="contact" className="bg-brand-navy text-white py-20 border-t border-white/5">
+      <footer id="contact" className="bg-brand-navy text-white py-24 border-t border-white/5">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-1 md:col-span-1">
@@ -587,6 +601,8 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      <SignupModal isOpen={isSignupOpen} onClose={() => setIsSignupOpen(false)} />
     </div>
   );
 }
