@@ -5,17 +5,22 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Shield, ArrowRight, Download, MapPin, Phone, Mail, Globe, CheckCircle2, Search, Check, Loader2 } from 'lucide-react';
-import { SERVICES, COMPLIANCE, INDUSTRIES } from './constants';
+import { Shield, ArrowRight, Download, MapPin, Phone, Mail, Globe, CheckCircle2, Search, Check, Loader2, Menu, X, MessageSquare, HelpCircle, ChevronDown } from 'lucide-react';
+import { SERVICES, COMPLIANCE, INDUSTRIES, TESTIMONIALS, FAQS } from './constants';
 import { Logo } from './components/Logo';
 import { ContactForm } from './components/ContactForm';
 
 export default function App() {
   const [isMapLoading, setIsMapLoading] = useState(true);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+
   const scrollToContact = () => {
     const element = document.getElementById('contact-form');
     element?.scrollIntoView({ behavior: 'smooth' });
   };
+
+  const navItems = ['About', 'Services', 'Compliance', 'Contact'];
 
   return (
     <div className="min-h-screen flex flex-col selection:bg-brand-teal/30">
@@ -24,8 +29,9 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
           <Logo variant="light" />
           
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center gap-8">
-            {['About', 'Services', 'Compliance', 'Contact'].map((item) => (
+            {navItems.map((item) => (
               <a 
                 key={item} 
                 href={item === 'Contact' ? '#contact-form' : `#${item.toLowerCase()}`} 
@@ -40,11 +46,60 @@ export default function App() {
                 {item}
               </a>
             ))}
-            <button className="bg-brand-teal text-white px-5 py-2.5 text-xs font-bold uppercase tracking-widest hover:bg-brand-teal/90 transition-all">
+            <button
+              aria-label="Access Client Portal"
+              className="bg-brand-teal text-white px-5 py-2.5 text-xs font-bold uppercase tracking-widest hover:bg-brand-teal/90 transition-all"
+            >
               Client Portal
             </button>
           </div>
+
+          {/* Mobile Menu Toggle */}
+          <button
+            className="md:hidden text-white p-2"
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            aria-label="Toggle Menu"
+          >
+            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
+
+        {/* Mobile Navigation Overlay */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden bg-brand-navy border-t border-white/10 overflow-hidden"
+            >
+              <div className="flex flex-col p-6 gap-6">
+                {navItems.map((item) => (
+                  <a
+                    key={item}
+                    href={item === 'Contact' ? '#contact-form' : `#${item.toLowerCase()}`}
+                    className="text-white/70 hover:text-brand-teal text-sm font-semibold uppercase tracking-widest transition-colors"
+                    onClick={(e) => {
+                      setIsMenuOpen(false);
+                      if (item === 'Contact') {
+                        e.preventDefault();
+                        scrollToContact();
+                      }
+                    }}
+                  >
+                    {item}
+                  </a>
+                ))}
+                <button
+                  aria-label="Access Client Portal"
+                  className="bg-brand-teal text-white px-5 py-3 text-xs font-bold uppercase tracking-widest hover:bg-brand-teal/90 transition-all w-full text-center"
+                >
+                  Client Portal
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </nav>
 
       <main className="flex-grow">
@@ -79,14 +134,18 @@ export default function App() {
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
                   onClick={scrollToContact}
+                  aria-label="Book a Security Risk Assessment"
                   className="bg-brand-teal text-white px-8 py-4 font-bold uppercase tracking-widest text-sm hover:translate-y-[-2px] transition-all shadow-lg shadow-brand-teal/20 flex items-center justify-center gap-2"
                 >
-                  Book a Security Risk Assessment
+                  Get Your Risk Assessment
                   <ArrowRight size={18} />
                 </button>
-                <button className="border border-white/20 text-white px-8 py-4 font-bold uppercase tracking-widest text-sm hover:bg-white/5 transition-all flex items-center justify-center gap-2">
+                <button
+                  aria-label="Download Company Compliance Profile"
+                  className="border border-white/20 text-white px-8 py-4 font-bold uppercase tracking-widest text-sm hover:bg-white/5 transition-all flex items-center justify-center gap-2"
+                >
                   <Download size={18} />
-                  Download Compliance Profile
+                  Company Profile
                 </button>
               </div>
             </motion.div>
@@ -99,10 +158,10 @@ export default function App() {
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
                 <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.3em] block mb-4">Our Ethos</span>
-                <h2 className="text-4xl font-display font-bold text-brand-navy tracking-tight mb-8">A Structured Approach to Security</h2>
+                <h2 className="text-4xl font-display font-bold text-brand-navy tracking-tight mb-8">Structured Protection for Peace of Mind</h2>
                 <div className="space-y-6 text-brand-charcoal/80 leading-relaxed">
                   <p>
-                    Eagle Star Security was established to provide more than physical presence. We deliver professional, regulated, and accountable security services supported by compliance integrity and operational discipline.
+                    Eagle Star Security was established to provide more than physical presence. We go beyond basic guarding to provide proactive risk management and measurable asset protection.
                   </p>
                   <p>
                     Our teams are PSIRA registered, professionally trained, and deployed according to structured risk assessments. We operate across Gauteng, serving corporate, industrial, retail, and event clients who require reliability and measurable results.
@@ -124,6 +183,72 @@ export default function App() {
                   <div className="text-[10px] font-bold uppercase tracking-widest text-brand-teal">Compliance Adherence</div>
                 </div>
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Testimonials Section */}
+        <section className="py-24 bg-white overflow-hidden">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.3em] block mb-4">Social Proof</span>
+              <h2 className="text-4xl font-display font-bold text-brand-navy tracking-tight">Client Feedback</h2>
+            </div>
+            <div className="grid md:grid-cols-3 gap-8">
+              {TESTIMONIALS.map((t, idx) => (
+                <motion.div
+                  key={idx}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: idx * 0.1 }}
+                  className="bg-brand-light-grey p-8 relative"
+                >
+                  <MessageSquare className="text-brand-teal/20 absolute top-6 right-6 w-12 h-12" />
+                  <p className="text-brand-charcoal/80 italic mb-8 relative z-10">"{t.quote}"</p>
+                  <div>
+                    <div className="font-bold text-brand-navy text-sm">{t.author}</div>
+                    <div className="text-brand-blue text-[10px] font-bold uppercase tracking-widest">{t.company}</div>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="py-24 bg-brand-light-grey">
+          <div className="max-w-3xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.3em] block mb-4">Resources</span>
+              <h2 className="text-4xl font-display font-bold text-brand-navy tracking-tight">Common Inquiries</h2>
+            </div>
+            <div className="space-y-4">
+              {FAQS.map((faq, idx) => (
+                <div key={idx} className="bg-white border border-black/5 overflow-hidden">
+                  <button
+                    onClick={() => setOpenFaqIndex(openFaqIndex === idx ? null : idx)}
+                    className="w-full px-8 py-6 text-left flex items-center justify-between hover:bg-black/[0.02] transition-colors"
+                  >
+                    <span className="font-bold text-brand-navy text-sm">{faq.question}</span>
+                    <ChevronDown className={`text-brand-teal transition-transform duration-300 ${openFaqIndex === idx ? 'rotate-180' : ''}`} size={18} />
+                  </button>
+                  <AnimatePresence>
+                    {openFaqIndex === idx && (
+                      <motion.div
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="px-8 pb-8 text-brand-charcoal/70 text-sm leading-relaxed border-t border-black/5 pt-4">
+                          {faq.answer}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
             </div>
           </div>
         </section>
@@ -452,8 +577,12 @@ export default function App() {
               © {new Date().getFullYear()} Eagle Star Security (Pty) Ltd. All Rights Reserved.
             </span>
             <div className="flex gap-6">
-              <Globe size={16} className="text-white/30 hover:text-brand-teal cursor-pointer transition-colors" />
-              <Mail size={16} className="text-white/30 hover:text-brand-teal cursor-pointer transition-colors" />
+              <a href="#" aria-label="Visit our website" className="text-white/30 hover:text-brand-teal transition-colors">
+                <Globe size={16} />
+              </a>
+              <a href="mailto:info@eaglestar.co.za" aria-label="Email us" className="text-white/30 hover:text-brand-teal transition-colors">
+                <Mail size={16} />
+              </a>
             </div>
           </div>
         </div>
