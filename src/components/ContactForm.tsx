@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Send, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
 
 interface FormData {
   fullName: string;
@@ -37,6 +37,7 @@ export const ContactForm: React.FC = () => {
   const [errors, setErrors] = useState<FormErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   const validate = (): boolean => {
     const newErrors: FormErrors = {};
@@ -76,23 +77,35 @@ export const ContactForm: React.FC = () => {
     if (!validate()) return;
 
     setIsSubmitting(true);
-    
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    
-    setIsSubmitting(false);
-    setIsSuccess(true);
-    setFormData({
-      fullName: '',
-      email: '',
-      phone: '',
-      company: '',
-      service: '',
-      message: '',
-    });
+    setSubmitError(null);
 
-    // Reset success message after 5 seconds
-    setTimeout(() => setIsSuccess(false), 5000);
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to submit. Please try again.');
+      }
+
+      setIsSuccess(true);
+      setFormData({
+        fullName: '',
+        email: '',
+        phone: '',
+        company: '',
+        service: '',
+        message: '',
+      });
+
+      setTimeout(() => setIsSuccess(false), 5000);
+    } catch (err) {
+      setSubmitError(err instanceof Error ? err.message : 'An error occurred. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -256,6 +269,13 @@ export const ContactForm: React.FC = () => {
               )}
             </div>
 
+            {submitError && (
+              <div className="p-4 bg-red-50 text-red-600 text-xs flex items-center gap-3">
+                <AlertCircle size={16} />
+                {submitError}
+              </div>
+            )}
+
             <button
               type="submit"
               disabled={isSubmitting}
@@ -263,7 +283,7 @@ export const ContactForm: React.FC = () => {
             >
               {isSubmitting ? (
                 <>
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <Loader2 size={16} className="animate-spin" />
                   Processing...
                 </>
               ) : (
