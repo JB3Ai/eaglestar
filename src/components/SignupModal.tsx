@@ -88,7 +88,7 @@ export const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => 
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-brand-navy block">Full Name</label>
+                    <label className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-brand-navy block">Full Name</label>
                     <input
                       required
                       type="text"
@@ -100,7 +100,7 @@ export const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => 
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-brand-navy block">Email Address</label>
+                    <label className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-brand-navy block">Email Address</label>
                     <input
                       required
                       type="email"
@@ -112,7 +112,7 @@ export const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => 
                   </div>
 
                   <div className="space-y-2">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-brand-navy block">Phone Number</label>
+                    <label className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-brand-navy block">Phone Number</label>
                     <input
                       type="tel"
                       value={formData.phone}

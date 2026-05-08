@@ -27,8 +27,8 @@ export default function App() {
   return (
     <div className="min-h-screen flex flex-col selection:bg-brand-teal/30">
       {/* Navigation */}
-      <nav className="bg-brand-navy/95 backdrop-blur-md border-b border-white/5 sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <nav className="sticky top-0 z-50 border-b border-white/8 bg-brand-navy/92 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-6 h-24 flex items-center justify-between">
           <Logo variant="light" />
           
           {/* Desktop Navigation */}
@@ -37,7 +37,7 @@ export default function App() {
               <a 
                 key={item} 
                 href={item === 'Contact' ? '#contact-form' : `#${item.toLowerCase()}`} 
-                className="text-white/50 hover:text-brand-gold text-[10px] font-bold uppercase tracking-[0.2em] transition-all"
+                className="text-white/70 hover:text-brand-gold text-sm font-bold uppercase tracking-[0.22em] transition-all"
                 onClick={(e) => {
                   if (item === 'Contact') {
                     e.preventDefault();
@@ -50,15 +50,15 @@ export default function App() {
             ))}
             <button
               onClick={() => setIsSignupOpen(true)}
-              className="text-brand-teal text-[10px] font-bold uppercase tracking-[0.2em] hover:text-white transition-colors"
+              className="text-brand-teal text-sm font-bold uppercase tracking-[0.22em] hover:text-white transition-colors"
             >
               Sign Up
             </button>
             <button
               aria-label="Access Client Portal"
-              className="bg-brand-blue/20 hover:bg-brand-blue text-white border border-brand-blue/30 px-6 py-2.5 text-[10px] font-bold uppercase tracking-[0.2em] transition-all"
+              className="bg-brand-blue/18 hover:bg-brand-blue text-white border border-brand-blue/30 px-7 py-3 text-sm font-bold uppercase tracking-[0.2em] transition-all"
             >
-              Client Portal
+              Request Brief
             </button>
           </div>
 
@@ -105,10 +105,10 @@ export default function App() {
                   Quick Sign Up
                 </button>
                 <button
-                  aria-label="Access Client Portal"
-                  className="bg-brand-blue text-white px-5 py-3 text-xs font-bold uppercase tracking-widest hover:bg-brand-blue/90 transition-all w-full text-center"
+                  aria-label="Request Brief"
+                  className="bg-brand-blue text-white px-5 py-3 text-sm font-bold uppercase tracking-[0.2em] hover:bg-brand-blue/90 transition-all w-full text-center"
                 >
-                  Client Portal
+                  Request Brief
                 </button>
               </div>
             </motion.div>
@@ -118,10 +118,10 @@ export default function App() {
 
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative bg-brand-navy overflow-hidden py-32 lg:py-56">
+        <section className="relative overflow-hidden bg-brand-navy py-24 lg:py-36">
           <div className="absolute inset-0">
-             <div className="absolute inset-0 bg-gradient-to-b from-transparent to-brand-navy/50" />
-             <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(20,184,166,0.08),transparent_70%)]" />
+             <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_22%,rgba(20,184,166,0.14),transparent_32%),radial-gradient(circle_at_86%_18%,rgba(197,160,89,0.16),transparent_24%),linear-gradient(180deg,rgba(7,17,29,0.18),rgba(10,25,41,0.72))]" />
+             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(0deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:72px_72px]" />
           </div>
           
           {/* Subtle shield watermark */}
@@ -129,39 +129,78 @@ export default function App() {
             <Shield size={900} strokeWidth={0.3} className="text-white" />
           </div>
 
-          <div className="max-w-7xl mx-auto px-6 relative z-10 text-center lg:text-left">
+          <div className="max-w-7xl mx-auto px-6 relative z-10">
             <motion.div 
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-              className="max-w-4xl mx-auto lg:mx-0"
+              className="grid gap-14 lg:grid-cols-[minmax(0,1.2fr)_380px] lg:items-end"
             >
-              <div className="flex justify-center lg:justify-start">
-                 <div className="w-16 h-1 bg-brand-gold mb-12" />
+              <div className="text-center lg:text-left">
+                <div className="mb-8 flex justify-center lg:justify-start">
+                  <div className="inline-flex items-center gap-3 rounded-full border border-white/12 bg-white/6 px-5 py-2 text-sm font-bold uppercase tracking-[0.24em] text-brand-teal">
+                    <span className="h-2.5 w-2.5 rounded-full bg-brand-gold"></span>
+                    Strategic Security Operations
+                  </div>
+                </div>
+                <div className="flex justify-center lg:justify-start">
+                   <div className="mb-10 h-1 w-24 bg-brand-gold" />
+                </div>
+                <h1 className="mb-8 font-display text-6xl font-extrabold leading-[0.92] tracking-[-0.05em] text-white sm:text-7xl lg:text-[6.75rem]">
+                  Protection with
+                  <br />
+                  <span className="text-white/36">visible command.</span>
+                </h1>
+                <p className="mb-10 max-w-3xl text-xl font-medium leading-relaxed text-white/72 lg:text-2xl">
+                  Eagle Star Security delivers disciplined guarding, internal risk intelligence, and response-ready support for businesses that need more than a body at the gate.
+                </p>
+                
+                <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
+                  <button 
+                    onClick={() => setIsSignupOpen(true)}
+                    className="bg-brand-gold text-brand-navy px-10 py-5 font-bold uppercase tracking-[0.2em] text-sm hover:brightness-110 transition-all shadow-2xl flex items-center justify-center gap-2"
+                  >
+                    Quick Sign Up
+                    <ArrowRight size={16} />
+                  </button>
+                  <button
+                    onClick={scrollToContact}
+                    aria-label="Book a Security Risk Assessment"
+                    className="bg-white/6 backdrop-blur-sm text-white border border-white/12 px-10 py-5 font-bold uppercase tracking-[0.2em] text-sm hover:bg-white/10 transition-all flex items-center justify-center gap-2"
+                  >
+                    Risk Assessment
+                  </button>
+                </div>
               </div>
-              <h1 className="text-6xl lg:text-9xl text-white font-display font-black leading-[0.9] mb-8 tracking-tighter">
-                Risk Controlled.<br />
-                <span className="text-white/30">Operations Secured.</span>
-              </h1>
-              <p className="text-xl lg:text-2xl text-brand-teal font-medium leading-relaxed mb-8 max-w-2xl mx-auto lg:mx-0">
-                Gauteng’s premier intelligence-driven security partner. Delivering disciplined, compliant, and accountable protection.
-              </p>
-              
-              <div className="flex flex-col sm:flex-row gap-5 justify-center lg:justify-start">
-                <button 
-                  onClick={() => setIsSignupOpen(true)}
-                  className="bg-brand-gold text-brand-navy px-10 py-5 font-bold uppercase tracking-[0.2em] text-xs hover:brightness-110 transition-all shadow-2xl flex items-center justify-center gap-2"
-                >
-                  Quick Sign Up
-                  <ArrowRight size={16} />
-                </button>
-                <button
-                  onClick={scrollToContact}
-                  aria-label="Book a Security Risk Assessment"
-                  className="bg-white/5 backdrop-blur-sm text-white border border-white/10 px-10 py-5 font-bold uppercase tracking-[0.2em] text-xs hover:bg-white/10 transition-all flex items-center justify-center gap-2"
-                >
-                  Risk Assessment
-                </button>
+
+              <div className="rounded-[2rem] border border-white/10 bg-white/8 p-8 text-white shadow-[0_28px_60px_rgba(0,0,0,0.32)] backdrop-blur-sm">
+                <div className="mb-8 flex items-center justify-between">
+                  <div>
+                    <p className="text-sm font-bold uppercase tracking-[0.24em] text-brand-teal">Operational Snapshot</p>
+                    <p className="mt-2 text-white/60">Current positioning across Gauteng</p>
+                  </div>
+                  <Shield className="text-brand-gold" size={24} />
+                </div>
+                <div className="space-y-5">
+                  <div className="rounded-2xl border border-white/8 bg-black/14 p-5">
+                    <p className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-white/54">Service Mix</p>
+                    <p className="mt-2 text-lg font-semibold">Guarding, intelligence, event cover, and site risk reviews.</p>
+                  </div>
+                  <div className="grid gap-4 sm:grid-cols-3 lg:grid-cols-1">
+                    <div className="rounded-2xl border border-white/8 bg-black/12 p-5">
+                      <p className="text-3xl font-display font-bold text-brand-gold">24/7</p>
+                      <p className="mt-2 text-sm uppercase tracking-[0.24em] text-white/58">Response posture</p>
+                    </div>
+                    <div className="rounded-2xl border border-white/8 bg-black/12 p-5">
+                      <p className="text-3xl font-display font-bold text-brand-gold">PSIRA</p>
+                      <p className="mt-2 text-sm uppercase tracking-[0.24em] text-white/58">Registered teams</p>
+                    </div>
+                    <div className="rounded-2xl border border-white/8 bg-black/12 p-5">
+                      <p className="text-3xl font-display font-bold text-brand-gold">Gauteng</p>
+                      <p className="mt-2 text-sm uppercase tracking-[0.24em] text-white/58">Core footprint</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </motion.div>
           </div>
@@ -172,7 +211,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.3em] block mb-4">Our Ethos</span>
+                <span className="text-brand-blue font-bold text-sm uppercase tracking-[0.28em] block mb-4">Our Ethos</span>
                 <h2 className="text-4xl font-display font-bold text-brand-navy tracking-tight mb-8">Structured Protection for Peace of Mind</h2>
                 <div className="space-y-6 text-brand-charcoal/80 leading-relaxed">
                   <p>
@@ -195,7 +234,7 @@ export default function App() {
                 />
                 <div className="absolute -bottom-8 -left-8 bg-brand-navy p-10 text-white hidden md:block">
                   <div className="text-4xl font-display font-bold mb-2">100%</div>
-                  <div className="text-[10px] font-bold uppercase tracking-widest text-brand-teal">Compliance Adherence</div>
+                  <div className="text-sm font-bold uppercase tracking-[0.24em] text-brand-teal">Compliance Adherence</div>
                 </div>
               </div>
             </div>
@@ -206,7 +245,7 @@ export default function App() {
         <section className="py-24 bg-white overflow-hidden">
           <div className="max-w-7xl mx-auto px-6">
             <div className="text-center mb-16">
-              <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.3em] block mb-4">Social Proof</span>
+              <span className="text-brand-blue font-bold text-sm uppercase tracking-[0.28em] block mb-4">Social Proof</span>
               <h2 className="text-4xl font-display font-bold text-brand-navy tracking-tight">Client Feedback</h2>
             </div>
             <div className="grid md:grid-cols-3 gap-8">
@@ -223,7 +262,7 @@ export default function App() {
                   <p className="text-brand-charcoal/80 italic mb-8 relative z-10">"{t.quote}"</p>
                   <div>
                     <div className="font-bold text-brand-navy text-sm">{t.author}</div>
-                    <div className="text-brand-blue text-[10px] font-bold uppercase tracking-widest">{t.company}</div>
+                    <div className="text-brand-blue text-sm font-bold uppercase tracking-[0.2em]">{t.company}</div>
                   </div>
                 </motion.div>
               ))}
@@ -235,7 +274,7 @@ export default function App() {
         <section className="py-24 bg-brand-light-grey">
           <div className="max-w-3xl mx-auto px-6">
             <div className="text-center mb-16">
-              <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.3em] block mb-4">Resources</span>
+              <span className="text-brand-blue font-bold text-sm uppercase tracking-[0.28em] block mb-4">Resources</span>
               <h2 className="text-4xl font-display font-bold text-brand-navy tracking-tight">Common Inquiries</h2>
             </div>
             <div className="space-y-4">
@@ -272,7 +311,7 @@ export default function App() {
         <section id="services" className="py-32 bg-brand-light-grey">
           <div className="max-w-7xl mx-auto px-6">
             <div className="mb-20 text-center lg:text-left">
-              <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.4em] block mb-4">Excellence in Security</span>
+              <span className="text-brand-blue font-bold text-sm uppercase tracking-[0.32em] block mb-4">Excellence in Security</span>
               <h2 className="text-5xl font-display font-extrabold text-brand-navy tracking-tight mb-8">Operational Pillars</h2>
               <p className="text-brand-charcoal/60 max-w-2xl mx-auto lg:mx-0 text-lg">
                 Elite protection strategies delivered with uncompromising precision and professional integrity.
@@ -302,14 +341,14 @@ export default function App() {
                   </p>
                   <ul className="space-y-3 mb-8 flex-grow">
                     {service.points?.map((point) => (
-                      <li key={point} className="flex items-start gap-3 text-xs text-brand-charcoal/80">
+                      <li key={point} className="flex items-start gap-3 text-sm text-brand-charcoal/80">
                         <Check size={14} className="text-brand-teal shrink-0 mt-0.5" />
                         {point}
                       </li>
                     ))}
                   </ul>
                   <div className="pt-8 border-t border-black/5">
-                    <button className="text-brand-blue font-bold text-xs uppercase tracking-widest flex items-center gap-2 hover:text-brand-teal transition-colors">
+                    <button className="text-brand-blue font-bold text-sm uppercase tracking-[0.22em] flex items-center gap-2 hover:text-brand-teal transition-colors">
                       Operational Scope
                       <ArrowRight size={14} />
                     </button>
@@ -328,7 +367,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-6 relative z-10">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <span className="text-brand-teal font-bold text-xs uppercase tracking-[0.3em] block mb-4">Intelligence Division</span>
+                <span className="text-brand-teal font-bold text-sm uppercase tracking-[0.28em] block mb-4">Intelligence Division</span>
                 <h2 className="text-4xl font-display font-bold text-white tracking-tight mb-8">Internal Risk Intelligence</h2>
                 <p className="text-white/60 text-lg leading-relaxed mb-8">
                   Theft, shrinkage, collusion, and drug activity can severely impact business performance. Our Undercover Division integrates trained operatives into operational environments to identify and document internal risk.
@@ -350,8 +389,8 @@ export default function App() {
                   { label: "Evidence Gathering", desc: "Surveillance-supported documentation for legal action." }
                 ].map((item) => (
                   <div key={item.label} className="p-6 bg-white/5 border border-white/10">
-                    <h4 className="text-brand-teal font-bold text-xs uppercase tracking-widest mb-3">{item.label}</h4>
-                    <p className="text-white/40 text-[10px] leading-relaxed">{item.desc}</p>
+                    <h4 className="text-brand-teal font-bold text-sm uppercase tracking-[0.22em] mb-3">{item.label}</h4>
+                    <p className="text-white/56 text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 ))}
               </div>
@@ -363,7 +402,7 @@ export default function App() {
         <section className="py-24 bg-brand-light-grey">
           <div className="max-w-7xl mx-auto px-6">
             <div className="mb-16">
-              <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.3em] block mb-4">Sectors</span>
+              <span className="text-brand-blue font-bold text-sm uppercase tracking-[0.28em] block mb-4">Sectors</span>
               <h2 className="text-3xl font-display font-bold text-brand-navy tracking-tight">Industries We Protect</h2>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
@@ -376,7 +415,7 @@ export default function App() {
                   <div className="w-10 h-10 bg-brand-light-grey rounded-full flex items-center justify-center mb-4 group-hover:bg-brand-teal transition-colors">
                     <Shield size={16} className="text-brand-blue group-hover:text-white" />
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-brand-navy group-hover:text-white">{industry}</span>
+                  <span className="text-sm font-bold uppercase tracking-[0.18em] text-brand-navy group-hover:text-white">{industry}</span>
                 </motion.div>
               ))}
             </div>
@@ -388,7 +427,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-16 items-center">
               <div>
-                <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.3em] block mb-4">Regulatory Alignment</span>
+                <span className="text-brand-blue font-bold text-sm uppercase tracking-[0.28em] block mb-4">Regulatory Alignment</span>
                 <h2 className="text-3xl font-display font-bold text-brand-navy tracking-tight mb-6">Compliant. Regulated. Accountable.</h2>
                 <p className="text-brand-charcoal/70 leading-relaxed max-w-lg mb-8">
                   Eagle Star Security operates within a fully compliant regulatory framework. We understand corporate procurement requirements and maintain structured documentation to support tender and compliance processes.
@@ -405,7 +444,7 @@ export default function App() {
                   <div key={item.label} className="p-6 bg-brand-light-grey border border-black/5">
                     <CheckCircle2 className="text-brand-teal w-5 h-5 mb-4" />
                     <div className="text-sm font-display font-bold text-brand-navy mb-1">{item.label}</div>
-                    <div className="text-[10px] font-mono text-brand-charcoal/50 uppercase tracking-wider">{item.code}</div>
+                    <div className="text-sm font-mono text-brand-charcoal/50 uppercase tracking-[0.14em]">{item.code}</div>
                   </div>
                 ))}
               </div>
@@ -436,7 +475,7 @@ export default function App() {
           <div className="max-w-7xl mx-auto px-6">
             <div className="grid lg:grid-cols-2 gap-16">
               <div>
-                <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.3em] block mb-4">Contact Us</span>
+                <span className="text-brand-blue font-bold text-sm uppercase tracking-[0.28em] block mb-4">Contact Us</span>
                 <h2 className="text-4xl font-display font-bold text-brand-navy tracking-tight mb-8">Operational Inquiry</h2>
                 <p className="text-brand-charcoal/70 text-lg leading-relaxed mb-8">
                   For service inquiries, risk assessments, or operational support across Gauteng, please complete the form. Our team will respond with a structured proposal.
@@ -448,7 +487,7 @@ export default function App() {
                       <Phone className="text-brand-teal w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="text-[10px] font-bold uppercase tracking-widest text-brand-navy mb-1">Direct Line</h4>
+                      <h4 className="text-sm font-bold uppercase tracking-[0.22em] text-brand-navy mb-1">Direct Line</h4>
                       <p className="text-brand-charcoal font-bold">087 702 1699</p>
                     </div>
                   </div>
@@ -458,7 +497,7 @@ export default function App() {
                       <Mail className="text-brand-teal w-5 h-5" />
                     </div>
                     <div>
-                      <h4 className="text-[10px] font-bold uppercase tracking-widest text-brand-navy mb-1">Email Support</h4>
+                      <h4 className="text-sm font-bold uppercase tracking-[0.22em] text-brand-navy mb-1">Email Support</h4>
                       <p className="text-brand-charcoal font-bold">info@eaglestar.co.za</p>
                     </div>
                   </div>
@@ -474,7 +513,7 @@ export default function App() {
         <section className="bg-white">
           <div className="grid lg:grid-cols-2">
             <div className="p-12 lg:p-24 flex flex-col justify-center">
-              <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.3em] block mb-4">Headquarters</span>
+              <span className="text-brand-blue font-bold text-sm uppercase tracking-[0.28em] block mb-4">Headquarters</span>
               <h2 className="text-3xl font-display font-bold text-brand-navy tracking-tight mb-8">Operational Presence</h2>
               <div className="space-y-8">
                 <div className="flex gap-6">
@@ -512,7 +551,7 @@ export default function App() {
                     className="absolute inset-0 z-20 bg-brand-light-grey flex flex-col items-center justify-center gap-4"
                   >
                     <Loader2 className="text-brand-teal w-8 h-8 animate-spin" />
-                    <span className="text-[10px] font-bold uppercase tracking-widest text-brand-navy/40">
+                    <span className="text-sm font-bold uppercase tracking-[0.2em] text-brand-navy/40">
                       Loading Operational Map...
                     </span>
                   </motion.div>
@@ -543,14 +582,14 @@ export default function App() {
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div className="col-span-1 md:col-span-1">
               <Logo className="mb-8" variant="light" />
-              <p className="text-white/40 text-xs leading-relaxed">
+              <p className="text-white/48 text-sm leading-relaxed">
                 Protect your operations with structured, professional security services. Operating across Gauteng.
               </p>
             </div>
 
             <div>
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-teal mb-6">Operations</h4>
-              <ul className="space-y-4 text-xs text-white/60 font-medium">
+              <h4 className="text-sm font-bold uppercase tracking-[0.24em] text-brand-teal mb-6">Operations</h4>
+              <ul className="space-y-4 text-sm text-white/60 font-medium">
                 <li><a href="#" className="hover:text-white transition-colors">Physical Guarding</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">Risk Assessment</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">VIP Protection</a></li>
@@ -559,8 +598,8 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-teal mb-6">Contact</h4>
-              <ul className="space-y-4 text-xs text-white/60 font-medium">
+              <h4 className="text-sm font-bold uppercase tracking-[0.24em] text-brand-teal mb-6">Contact</h4>
+              <ul className="space-y-4 text-sm text-white/60 font-medium">
                 <li className="flex items-start gap-3">
                   <MapPin size={14} className="text-brand-teal shrink-0 mt-0.5" />
                   <span>26 Oaktree Avenue<br />Hazelwood, Pretoria<br />0083</span>
@@ -577,8 +616,8 @@ export default function App() {
             </div>
 
             <div>
-              <h4 className="text-[10px] font-bold uppercase tracking-[0.3em] text-brand-teal mb-6">Legal</h4>
-              <ul className="space-y-4 text-xs text-white/60 font-medium">
+              <h4 className="text-sm font-bold uppercase tracking-[0.24em] text-brand-teal mb-6">Legal</h4>
+              <ul className="space-y-4 text-sm text-white/60 font-medium">
                 <li><a href="#" className="hover:text-white transition-colors">Privacy Policy</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">PAIA Manual</a></li>
                 <li><a href="#" className="hover:text-white transition-colors">PSIRA Certification</a></li>
@@ -587,7 +626,7 @@ export default function App() {
           </div>
 
           <div className="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
-            <span className="text-[10px] text-white/30 uppercase tracking-widest font-medium">
+            <span className="text-sm text-white/30 uppercase tracking-[0.18em] font-medium">
               © {new Date().getFullYear()} Eagle Star Security (Pty) Ltd. All Rights Reserved.
             </span>
             <div className="flex gap-6">

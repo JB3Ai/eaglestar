@@ -137,7 +137,7 @@ export const ContactForm: React.FC = () => {
             </p>
             <button
               onClick={() => setIsSuccess(false)}
-              className="mt-8 text-brand-blue font-bold text-xs uppercase tracking-widest hover:text-brand-teal transition-colors"
+              className="mt-8 text-brand-blue text-sm font-bold uppercase tracking-[0.22em] hover:text-brand-teal transition-colors"
             >
               Send another message
             </button>
@@ -153,7 +153,7 @@ export const ContactForm: React.FC = () => {
           >
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-brand-navy block">
+                <label className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-brand-navy block">
                   Full Name <span className="text-brand-teal">*</span>
                 </label>
                 <input
@@ -165,14 +165,14 @@ export const ContactForm: React.FC = () => {
                   className={`w-full bg-brand-light-grey border ${errors.fullName ? 'border-red-500' : 'border-black/5'} px-4 py-3 text-sm focus:outline-none focus:border-brand-teal transition-colors`}
                 />
                 {errors.fullName && (
-                  <span className="text-[10px] text-red-500 flex items-center gap-1">
+                  <span className="text-xs text-red-500 flex items-center gap-1">
                     <AlertCircle size={10} /> {errors.fullName}
                   </span>
                 )}
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-brand-navy block">
+                <label className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-brand-navy block">
                   Email Address <span className="text-brand-teal">*</span>
                 </label>
                 <input
@@ -184,7 +184,7 @@ export const ContactForm: React.FC = () => {
                   className={`w-full bg-brand-light-grey border ${errors.email ? 'border-red-500' : 'border-black/5'} px-4 py-3 text-sm focus:outline-none focus:border-brand-teal transition-colors`}
                 />
                 {errors.email && (
-                  <span className="text-[10px] text-red-500 flex items-center gap-1">
+                  <span className="text-xs text-red-500 flex items-center gap-1">
                     <AlertCircle size={10} /> {errors.email}
                   </span>
                 )}
@@ -193,7 +193,7 @@ export const ContactForm: React.FC = () => {
 
             <div className="grid md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-brand-navy block">
+                <label className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-brand-navy block">
                   Phone Number <span className="text-brand-teal">*</span>
                 </label>
                 <input
@@ -205,14 +205,14 @@ export const ContactForm: React.FC = () => {
                   className={`w-full bg-brand-light-grey border ${errors.phone ? 'border-red-500' : 'border-black/5'} px-4 py-3 text-sm focus:outline-none focus:border-brand-teal transition-colors`}
                 />
                 {errors.phone && (
-                  <span className="text-[10px] text-red-500 flex items-center gap-1">
+                  <span className="text-xs text-red-500 flex items-center gap-1">
                     <AlertCircle size={10} /> {errors.phone}
                   </span>
                 )}
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-bold uppercase tracking-widest text-brand-navy block">
+                <label className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-brand-navy block">
                   Company Name
                 </label>
                 <input
@@ -227,7 +227,7 @@ export const ContactForm: React.FC = () => {
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-brand-navy block">
+              <label className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-brand-navy block">
                 Required Service <span className="text-brand-teal">*</span>
               </label>
               <select
@@ -244,14 +244,14 @@ export const ContactForm: React.FC = () => {
                 <option value="other">Other Inquiry</option>
               </select>
               {errors.service && (
-                <span className="text-[10px] text-red-500 flex items-center gap-1">
+                <span className="text-xs text-red-500 flex items-center gap-1">
                   <AlertCircle size={10} /> {errors.service}
                 </span>
               )}
             </div>
 
             <div className="space-y-2">
-              <label className="text-[10px] font-bold uppercase tracking-widest text-brand-navy block">
+              <label className="text-[0.72rem] font-bold uppercase tracking-[0.24em] text-brand-navy block">
                 Message / Operational Requirements <span className="text-brand-teal">*</span>
               </label>
               <textarea
@@ -263,7 +263,7 @@ export const ContactForm: React.FC = () => {
                 className={`w-full bg-brand-light-grey border ${errors.message ? 'border-red-500' : 'border-black/5'} px-4 py-3 text-sm focus:outline-none focus:border-brand-teal transition-colors resize-none`}
               />
               {errors.message && (
-                <span className="text-[10px] text-red-500 flex items-center gap-1">
+                <span className="text-xs text-red-500 flex items-center gap-1">
                   <AlertCircle size={10} /> {errors.message}
                 </span>
               )}
