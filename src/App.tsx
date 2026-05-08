@@ -6,7 +6,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Shield, ArrowRight, Download, MapPin, Phone, Mail, Globe, CheckCircle2, Search, Check, Loader2, Menu, X, MessageSquare, HelpCircle, ChevronDown } from 'lucide-react';
-import { SERVICES, COMPLIANCE, INDUSTRIES, TESTIMONIALS, FAQS } from './constants';
+import { SERVICES, COMPLIANCE, SECTORS, TESTIMONIALS, FAQS, SERVICE_AREAS } from './constants';
 import { Logo } from './components/Logo';
 import { ContactForm } from './components/ContactForm';
 import { SignupModal } from './components/SignupModal';
@@ -188,7 +188,7 @@ export default function App() {
               </div>
               <div className="relative">
                 <img 
-                  src="https://picsum.photos/seed/security-ops/800/600" 
+                  src="/logo-1.png"
                   alt="Operational Security" 
                   className="w-full h-[500px] object-cover rounded-sm grayscale hover:grayscale-0 transition-all duration-700"
                   referrerPolicy="no-referrer"
@@ -359,24 +359,25 @@ export default function App() {
           </div>
         </section>
 
-        {/* Industries Section */}
+        {/* Sectors Section */}
         <section className="py-24 bg-brand-light-grey">
           <div className="max-w-7xl mx-auto px-6">
-            <div className="mb-16">
-              <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.3em] block mb-4">Sectors</span>
-              <h2 className="text-3xl font-display font-bold text-brand-navy tracking-tight">Industries We Protect</h2>
+            <div className="text-center mb-16">
+              <span className="text-brand-blue font-bold text-xs uppercase tracking-[0.3em] block mb-4">Operational Coverage</span>
+              <h2 className="text-4xl font-display font-bold text-brand-navy tracking-tight">Specialized Sector Expertise</h2>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-              {INDUSTRIES.map((industry) => (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {SECTORS.map((sector) => (
                 <motion.div 
-                  key={industry} 
-                  whileHover={{ scale: 1.02, y: -4 }}
-                  className="bg-white p-6 border border-black/5 flex flex-col items-start text-left justify-center group hover:bg-brand-navy transition-colors duration-500 cursor-default"
+                  key={sector.name}
+                  whileHover={{ y: -5 }}
+                  className="bg-white p-8 border border-black/5 hover:shadow-2xl transition-all duration-300"
                 >
-                  <div className="w-10 h-10 bg-brand-light-grey rounded-full flex items-center justify-center mb-4 group-hover:bg-brand-teal transition-colors">
-                    <Shield size={16} className="text-brand-blue group-hover:text-white" />
+                  <div className="w-12 h-12 bg-brand-light-grey flex items-center justify-center mb-6">
+                    <sector.icon size={24} className="text-brand-teal" />
                   </div>
-                  <span className="text-[10px] font-bold uppercase tracking-widest text-brand-navy group-hover:text-white">{industry}</span>
+                  <h3 className="text-lg font-display font-bold text-brand-navy mb-3 uppercase tracking-wider">{sector.name}</h3>
+                  <p className="text-brand-charcoal/70 text-sm leading-relaxed">{sector.description}</p>
                 </motion.div>
               ))}
             </div>
@@ -402,10 +403,11 @@ export default function App() {
 
               <div className="grid grid-cols-2 gap-4">
                 {COMPLIANCE.map((item) => (
-                  <div key={item.label} className="p-6 bg-brand-light-grey border border-black/5">
-                    <CheckCircle2 className="text-brand-teal w-5 h-5 mb-4" />
-                    <div className="text-sm font-display font-bold text-brand-navy mb-1">{item.label}</div>
-                    <div className="text-[10px] font-mono text-brand-charcoal/50 uppercase tracking-wider">{item.code}</div>
+                  <div key={item.label} className="p-6 bg-brand-light-grey border border-black/5 group hover:border-brand-teal transition-colors">
+                    <CheckCircle2 className="text-brand-teal w-5 h-5 mb-4 group-hover:scale-110 transition-transform" />
+                    <div className="text-sm font-display font-bold text-brand-navy mb-1 uppercase tracking-wider">{item.label}</div>
+                    <div className="text-[10px] font-mono text-brand-teal font-bold mb-2 uppercase tracking-wider">{item.code}</div>
+                    <p className="text-[10px] text-brand-charcoal/50 leading-relaxed">{item.detail}</p>
                   </div>
                 ))}
               </div>
@@ -494,11 +496,18 @@ export default function App() {
                   <div className="w-12 h-12 bg-brand-light-grey flex items-center justify-center shrink-0">
                     <Globe className="text-brand-teal w-6 h-6" />
                   </div>
-                  <div>
-                    <h4 className="text-brand-navy font-bold text-sm uppercase tracking-widest mb-2">Regional Coverage</h4>
-                    <p className="text-brand-charcoal/70 text-sm leading-relaxed">
-                      Strategic deployment across Gauteng and surrounding industrial hubs.
+                  <div className="w-full">
+                    <h4 className="text-brand-navy font-bold text-sm uppercase tracking-widest mb-2">Operational Hubs</h4>
+                    <p className="text-brand-charcoal/70 text-sm leading-relaxed mb-4">
+                      Strategic deployment and rapid response capabilities across the Gauteng region.
                     </p>
+                    <div className="flex flex-wrap gap-2">
+                      {SERVICE_AREAS.map((area) => (
+                        <span key={area} className="px-3 py-1 bg-brand-light-grey border border-black/5 text-[9px] font-bold uppercase tracking-widest text-brand-navy/60">
+                          {area}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </div>

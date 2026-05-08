@@ -18,7 +18,7 @@ export const Logo: React.FC<LogoProps> = ({ className = "", iconOnly = false, va
     <div className={`flex items-center gap-4 ${className}`}>
       <div className="relative w-14 h-14 shrink-0">
         <img
-          src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6"
+          src="/logo-3.png"
           alt="Eagle Star Security Logo"
           className="w-full h-full object-contain"
         />

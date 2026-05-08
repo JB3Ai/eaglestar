@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { Shield, Search, UserCheck } from 'lucide-react';
+import { Shield, Search, UserCheck, BarChart3, Building2, Factory, ShoppingCart, Truck, Home } from 'lucide-react';
 
 export const SERVICES = [
   {
@@ -12,9 +12,9 @@ export const SERVICES = [
     icon: Shield,
     points: [
       "Uniformed security officers",
-      "Armed guards",
+      "Armed and unarmed guarding",
       "Access control management",
-      "Dog handlers",
+      "K9 patrol units",
       "CCTV monitoring support",
       "Retail and commercial site security"
     ]
@@ -36,29 +36,57 @@ export const SERVICES = [
     description: "Our event security teams operate with structured planning and disciplined deployment to maintain safety, control, and professionalism.",
     icon: UserCheck,
     points: [
-      "Sporting events",
-      "Concerts and exhibitions",
+      "Sporting events & Concerts",
       "Corporate conferences",
-      "Crowd management",
-      "VIP close protection"
+      "Exhibitions and activations",
+      "Crowd management strategies",
+      "VIP close protection (Bodyguarding)"
     ]
   }
 ];
 
 export const COMPLIANCE = [
-  { label: "PSIRA Registered", code: "Reg. 2849102" },
-  { label: "CSD Active Supplier", code: "MAAA0049210" },
-  { label: "SARS Tax Compliant", code: "Tax Clearance Active" },
-  { label: "B-BBEE Level 2 Contributor", code: "95% Recognition" }
+  { label: "PSIRA Registered", code: "Reg. 2849102", detail: "Compliant with Private Security Industry Regulatory Authority" },
+  { label: "CSD Registered", code: "MAAA0049210", detail: "Central Supplier Database for Government Tenders" },
+  { label: "B-BBEE Level 2", code: "95% Recognition", detail: "Committed to South African Economic Transformation" },
+  { label: "COID Compliant", code: "Good Standing", detail: "Full Compensation for Occupational Injuries and Diseases" }
 ];
 
-export const INDUSTRIES = [
-  "Retail and Shopping Centres",
-  "Warehousing and Logistics",
-  "Manufacturing Facilities",
-  "Residential Estates",
-  "Corporate Offices",
-  "Events and Public Gatherings"
+export const SECTORS = [
+  {
+    name: "Retail & Malls",
+    description: "Loss prevention and crowd control for high-traffic environments.",
+    icon: ShoppingCart
+  },
+  {
+    name: "Logistics & Warehousing",
+    description: "Protecting the supply chain from internal and external shrinkage.",
+    icon: Truck
+  },
+  {
+    name: "Industrial & Manufacturing",
+    description: "Securing assets and personnel in complex industrial settings.",
+    icon: Factory
+  },
+  {
+    name: "Corporate & Commercial",
+    description: "Front-of-house security that maintains your brand's professionalism.",
+    icon: Building2
+  },
+  {
+    name: "Residential Estates",
+    description: "Discreet and effective security for high-value residential communities.",
+    icon: Home
+  },
+  {
+    name: "Data & Risk Analysis",
+    description: "Using data-driven insights to predict and mitigate future threats.",
+    icon: BarChart3
+  }
+];
+
+export const SERVICE_AREAS = [
+  "Sandton", "Midrand", "Centurion", "Pretoria East", "Kempton Park", "Johannesburg CBD", "Randburg", "Fourways"
 ];
 
 export const TESTIMONIALS = [
@@ -82,18 +110,18 @@ export const TESTIMONIALS = [
 export const FAQS = [
   {
     question: "Are all your guards PSIRA registered?",
-    answer: "Yes, 100% of our operational staff are PSIRA registered and vetted according to South African regulatory standards."
+    answer: "Yes, 100% of our operational staff are PSIRA registered and vetted according to South African regulatory standards. We conduct regular audits to ensure full compliance."
   },
   {
     question: "Do you provide services outside of Gauteng?",
-    answer: "Our primary focus is Gauteng, but we do handle specialized projects and national accounts on a case-by-case basis."
+    answer: "While our core operations are in Gauteng, we provide specialized investigative and VIP protection services across South Africa for specific projects."
   },
   {
     question: "How quickly can you deploy a security team?",
-    answer: "Deployment times vary by site requirements, but we can typically mobilize a standard guarding team within 24-48 hours after a risk assessment."
+    answer: "For standard guarding, we can typically deploy within 48 hours following a risk assessment. Emergency tactical support can be deployed faster depending on location."
   },
   {
-    question: "What makes your undercover division different?",
-    answer: "Our agents are specifically trained for internal intelligence gathering and operate within a structured legal framework to ensure evidence is admissible."
+    question: "How do you handle internal theft (shrinkage)?",
+    answer: "We deploy specialized undercover agents who blend into your workforce to identify patterns of theft and collusion, providing admissible evidence for prosecution."
   }
 ];
