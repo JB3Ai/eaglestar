@@ -37,15 +37,6 @@ app.post('/api/signup', (req, res) => {
   }
 });
 
-app.get('/api/signups', (req, res) => {
-  try {
-    const signups = db.prepare('SELECT * FROM signups ORDER BY created_at DESC').all();
-    res.json(signups);
-  } catch (error) {
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
 app.listen(port, () => {
   console.log(`Backend server running at http://localhost:${port}`);
 });
