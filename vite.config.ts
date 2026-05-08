@@ -7,6 +7,9 @@ export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
     base: '/',
+    build: {
+      assetsDir: '.',
+    },
     plugins: [react(), tailwindcss()],
     resolve: {
       alias: {
