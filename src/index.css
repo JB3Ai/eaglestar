@@ -1,16 +1,16 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Sora:wght@400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
   --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Sora", sans-serif;
   
-  --color-brand-navy: #0A1929; /* Deeper, more premium navy */
-  --color-brand-blue: #134E7F; /* Refined blue */
-  --color-brand-teal: #14B8A6; /* Sophisticated teal */
-  --color-brand-charcoal: #1C2229; /* Darker charcoal */
-  --color-brand-light-grey: #FAFBFC; /* Brighter, cleaner grey */
-  --color-brand-gold: #C5A059; /* Adding a premium accent */
+  --color-brand-navy: #0E2A47;
+  --color-brand-blue: #1E6FA8;
+  --color-brand-teal: #18A0C6;
+  --color-brand-charcoal: #2B2F36;
+  --color-brand-light: #F8FAFC;
+  --color-brand-gold: #D4A853;
 }
 
 @layer base {
@@ -19,13 +19,46 @@
   }
 
   body {
-    @apply font-sans text-brand-charcoal bg-brand-light-grey antialiased;
-    background-image:
-      radial-gradient(circle at top left, rgba(19, 78, 127, 0.08), transparent 32%),
-      linear-gradient(180deg, #f8fafc 0%, #ffffff 22%, #f8fafc 100%);
+    @apply font-sans text-brand-charcoal bg-white antialiased;
   }
   
   h1, h2, h3, h4 {
     @apply font-display;
   }
+  
+  ::selection {
+    @apply bg-brand-teal/30;
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-brand-teal to-brand-blue;
+  }
+  
+  .glass {
+    @apply bg-white/10 backdrop-blur-xl border border-white/20;
+  }
+  
+  .glass-dark {
+    @apply bg-brand-navy/40 backdrop-blur-xl border border-white/10;
+  }
+  
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-float-delayed {
+    animation: float 6s ease-in-out 2s infinite;
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.8; }
 }
