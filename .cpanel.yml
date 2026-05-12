@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/eaglekqu/public_html/
+    - /bin/bash -l -c 'cd "$GIT_DIR" && npm install --production=false'
+    - /bin/bash -l -c 'cd "$GIT_DIR" && npm run build'
+    - /bin/rsync -a --delete "$GIT_DIR/dist/" "$DEPLOYPATH"
