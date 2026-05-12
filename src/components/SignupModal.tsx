@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 interface SignupModalProps {
   isOpen: boolean;
@@ -28,14 +29,12 @@ export const SignupModal: React.FC<SignupModalProps> = ({ isOpen, onClose }) => 
     setError(null);
 
     try {
-      const response = await fetch('/api/signup', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      const { error } = await supabase
+        .from('signups')
+        .insert({ name: formData.name, email: formData.email, phone: formData.phone || null });
 
-      if (!response.ok) {
-        throw new Error('Failed to submit. Please try again.');
+      if (error) {
+        throw new Error(error.message || 'Failed to submit. Please try again.');
       }
 
       setIsSuccess(true);

@@ -6,6 +6,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Send, CheckCircle2, AlertCircle, Loader2 } from 'lucide-react';
+import { supabase } from '../lib/supabase';
 
 interface FormData {
   fullName: string;
@@ -80,14 +81,19 @@ export const ContactForm: React.FC = () => {
     setSubmitError(null);
 
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
-      });
+      const { error } = await supabase
+        .from('contact_requests')
+        .insert({
+          full_name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone,
+          company: formData.company || null,
+          service: formData.service,
+          message: formData.message,
+        });
 
-      if (!response.ok) {
-        throw new Error('Failed to submit. Please try again.');
+      if (error) {
+        throw new Error(error.message || 'Failed to submit. Please try again.');
       }
 
       setIsSuccess(true);
@@ -111,7 +117,6 @@ export const ContactForm: React.FC = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData((prev) => ({ ...prev, [name]: value }));
-    // Clear error when user starts typing
     if (errors[name as keyof FormErrors]) {
       setErrors((prev) => ({ ...prev, [name]: undefined }));
     }
